@@ -1,0 +1,156 @@
+<%- include("../layout/boilerplat.ejs") %>
+<style>
+    .cart-item-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    /* Quantity Control */
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    
+    .quantity-control button {
+        background-color: #f8f9fa;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s ease;
+    }
+    
+    .quantity-control button:hover {
+        background-color: #e0e0e0;
+    }
+    
+    .quantity-control span.quantity {
+        padding: 8px 12px;
+        font-size: 16px;
+        font-weight: bold;
+        min-width: 30px;
+        text-align: center;
+    }
+    
+    /* Remove Button - Purple Theme */
+.remove-btn {
+    background-color: #8b5cf6;  /* Purple color */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease, color 0.3s ease;
+    text-decoration: none; /* Ensure no underline */
+}
+
+/* Hover Effect - Darker Purple */
+.remove-btn:hover {
+    background-color: #9559f5; /* Darker shade of purple */
+    color: white; /* Keep text white */
+    text-decoration: none; /* Remove underline */
+}
+
+</style>
+<body>
+    <h2>Your Cart</h2>
+
+    <% if (cartItems.length > 0) { %>
+        <div id="cartItems" class="cart-items">
+            <% cartItems.forEach(item => { %>
+                <div class="cart-item">
+                    <div class="cart-item-details">
+                        <h3><%= item.name %></h3>
+                        <p>₹<%= item.price.toFixed(2) %></p>
+                    </div>
+
+                    <div class="cart-item-actions">
+                        <div class="quantity-control">
+                            <form action="/update-cart/<%= item.foodId %>" method="POST">
+                                <button type="submit" name="action" value="decrease">-</button>
+                                <span class="quantity"><%= item.quantity %></span>
+                                <button type="submit" name="action" value="increase">+</button>
+                            </form>
+                        </div>
+
+                        <form action="/remove-from-cart/<%= item.foodId %>" method="POST">
+                            <button type="submit" class="remove-btn">Remove</button>
+                        </form>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+
+        <!-- Cart Summary Section -->
+        <div id="cartSummary" class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span>₹<%= totalPrice.toFixed(2) %></span>
+            </div>
+            <div class="summary-row">
+                <span>Tax (10%):</span>
+                <span>₹<%= (totalPrice * 0.1).toFixed(2) %></span>
+            </div>
+            <div class="summary-row total">
+                <span>Total:</span>
+                <span>₹<%= (totalPrice * 1.1).toFixed(2) %></span>
+            </div>
+        </div>
+
+        <div class="cart-actions">
+            <a href="/menu" class="btn btn-outline">Continue Shopping</a>
+            <a href="/checkout" id="checkoutBtn" class="btn">Proceed to Checkout</a>
+        </div>
+    <% } else { %>
+        <div id="emptyCart" class="empty-cart">
+            <p>Your cart is empty.</p>
+            <a href="/menu" class="btn">Start Ordering</a>
+        </div>
+    <% } %>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const cartContainer = document.getElementById("cartItems");
+    
+        cartContainer.addEventListener("click", async (event) => {
+            const button = event.target;
+            if (button.tagName === "BUTTON" && !button.disabled) {
+                event.preventDefault(); // Prevent default form submission
+                button.disabled = true; // Prevent multiple clicks
+    
+                const form = button.closest("form");
+                const foodId = form.getAttribute("action").split("/").pop();
+    
+                if (button.classList.contains("remove-btn")) {
+                    // Handle item removal
+                    const response = await fetch(`/remove-from-cart/${foodId}`, {
+                        method: "POST",
+                    });
+    
+                    if (response.ok) {
+                        location.reload(); // Refresh UI after removal
+                    }
+                } else {
+                    // Handle quantity update (increase/decrease)
+                    const action = button.getAttribute("value");
+                    await fetch(`/update-cart/${foodId}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                        body: `action=${action}`,
+                    });
+                    location.reload(); // Refresh UI
+                }
+    
+                button.disabled = false; // Re-enable button
+            }
+        });
+    });
+
+</script>

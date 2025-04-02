@@ -1,0 +1,38 @@
+<%- include("./layout/boilerplat.ejs") %>
+<body>
+    
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for menu items...">
+        </div>
+        
+        <div class="category-tabs" id="categoryTabs">
+            <a href="/menu?category=All"><button class="category-tab"  data-category="all">All</button></a>
+            <a href="/menu?category=breakfast"><button class="category-tab" data-category="breakfast">Breakfast</button></a>
+            <a href="/menu?category=lunch"><button class="category-tab" data-category="lunch">Lunch</button></a>
+            <a href="/menu?category=dinner"><button class="category-tab" data-category="dinner">Dinner</button></a>
+            <a href="/menu?category=drinks"><button class="category-tab" data-category="drinks">Drinks</button></a>
+        </div>
+        
+        <div class="menu-list" id="menuList">
+            
+            
+            <% data.forEach(item => { %>
+                
+                <% if (category == "All" || item.category == category) { %>
+                    
+                    <div class="menu-item">
+                        <h3><%= item.name %></h3>
+                        <p><%= item.description %></p>
+                        <div class="menu-item-footer">
+                            <span class="price">&#8377;<%= item.price.toLocaleString("en-IN") %></span>
+                            <a href=""></a>
+                            <form action="/add-to-cart/<%=item._id%>" method="post"><button class="btn btn-outline add-to-cart-btn">Add to Cart</button></form>
+                        </div>    
+                    </div>
+                <% } %>
+            <% }); %>
+            
+            <!-- Menu items will be dynamically inserted here -->
+        </div>
+</body>
+

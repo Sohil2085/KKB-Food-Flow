@@ -1,0 +1,57 @@
+<%- include("../layout/boilerplat.ejs") %>
+
+    <body>
+            <div class="welcome-section">
+                <h2>Welcome to Our Restaurant</h2>
+                <p>Scan the QR code to start your ordering experience</p>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for menu items...">
+            </div>
+            <div class="category-section">
+                <h3>Menu Categories</h3>
+                <div class="category-cards">
+                    <a href="/menu?category=breakfast" class="category-card">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1499638309848-e9968540da83?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHZlZyUyMGJyZWFrZmFzdHxlbnwwfHwwfHx8MA%3D%3D"
+                                alt="Breakfast">
+                        </div>
+                        <h4>Breakfast</h4>
+                    </a>
+                    <a href="/menu?category=lunch" class="category-card">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1742281257687-092746ad6021?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Z3VqYXJhdGklMjB0aGFsaXxlbnwwfHwwfHx8MA%3D%3D"
+                                alt="Lunch">
+                        </div>
+                        <h4>Lunch</h4>
+                    </a>
+                    <a href="/menu?category=dinner" class="category-card">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8SW5kaWFuJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D"
+                                alt="Dinner">
+                        </div>
+                        <h4>Dinner</h4>
+                    </a>
+                    
+                    <a href="/menu?category=drinks" class="category-card">
+                        <div class="category-image">
+                            <img src="https://i.pinimg.com/564x/dd/1e/85/dd1e85738f6e4a29e7cd70c42611699f.jpg"
+                                alt="Drinks">
+                        </div>
+                        <h4>Drinks & Desserts</h4>
+                    </a>
+                    
+                </div>
+            </div>
+
+            <div class="action-section">
+                <a href="/menu?category=All" class="btn">View Full Menu</a>
+            </div>
+        
+
+        <div id="notification" class="notification">
+            <!-- Notification content will be dynamically inserted here -->
+        </div>
+
+        <script src="main.js"></script>
+    </body>

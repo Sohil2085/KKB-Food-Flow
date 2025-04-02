@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - QR Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>QR Restaurant</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+            <a href="cart.html" class="nav-link cart">
+                Cart
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Payment</h2>
+        
+        <div class="payment-section">
+            <div class="total-amount">
+                <h3>Total Amount:</h3>
+                <p class="price" id="totalAmount">$0.00</p>
+            </div>
+            
+            <form id="paymentForm">
+                <h3>Select Payment Method</h3>
+                
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="cash">
+                        <h3>Cash on Delivery</h3>
+                        <p>Pay when your order arrives</p>
+                    </div>
+                    <div class="payment-method" data-method="upi">
+                        <h3>UPI</h3>
+                        <p>Pay using any UPI app</p>
+                    </div>
+                    <div class="payment-method" data-method="card">
+                        <h3>Card Payment</h3>
+                        <p>Credit/Debit card</p>
+                    </div>
+                </div>
+                
+                <div class="payment-actions">
+                    <a href="confirm.html" class="btn btn-outline">Back</a>
+                    <button type="submit" class="btn" id="confirmOrderBtn">Confirm Order</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="payment.js"></script>
+</body>
+</html>

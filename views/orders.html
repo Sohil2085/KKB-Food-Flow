@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - QR Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <h1>QR Restaurant</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="menu.html" class="nav-link">Menu</a>
+            <a href="cart.html" class="nav-link cart">
+                Cart
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+            <a href="orders.html" class="nav-link active">My Orders</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>My Order History</h2>
+        
+        <div id="orderHistory" class="order-history">
+            <!-- Order history will be dynamically inserted here -->
+        </div>
+        
+        <div id="emptyHistory" class="empty-history" style="display: none;">
+            <p>You don't have any previous orders.</p>
+            <a href="menu.html" class="btn">Start Ordering</a>
+        </div>
+    </main>
+
+    <script src="orders.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login_container">
+        <h3>Sign Up</h3>
+        <%- include("../include/flash.ejs") %>
+        <form id="signupForm"action="/signup" method="post" >
+    
+            <div class="input_box">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required>
+            </div>
+            <div class="input_box">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input_box">
+                <label for="number">Phone Number</label>
+                <input type="text" id="number" name="number" placeholder="Enter phone number" required>
+            </div>
+            <div class="input_box">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="login_btn">Sign Up</button>
+            <p class="sign_up">Already have an account? <a href="/login">Login</a></p>
+        </form>
+    </div>
+</body>
+</html>

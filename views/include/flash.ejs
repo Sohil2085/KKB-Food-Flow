@@ -1,0 +1,36 @@
+<% if(success&&success.length){ %>
+    <div class="alert alert-success alert-dismissible fade show col-6 offset-3" role="alert">
+        <%= success  %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% } %>
+
+<% if(error&&error.length){ %>
+    <div class="alert alert-danger alert-dismissible fade show col-6 offset-3" role="alert">
+        <%= error  %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
+    </div>
+    <% } %>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const alerts = document.querySelectorAll(".alert");
+        
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    alert.style.opacity = "0";
+                    setTimeout(() => {
+                        alert.remove();
+                    }, 500);
+                }, 4000); // Auto close after 4 seconds
+        
+                alert.querySelector(".btn-close")?.addEventListener("click", () => {
+                    alert.style.opacity = "0";
+                    setTimeout(() => {
+                        alert.remove();
+                    }, 500);
+                });
+            });
+        });
+        
+    </script>

@@ -1,0 +1,19 @@
+<header class="header">
+    <div class="logo">
+        <h1>QR Restaurant</h1>
+        <% if(tableNumber!=null) {%>
+        <h3 style="color: white;">Table-<%= tableNumber  %></h3>
+        <% } %>
+    </div>
+    <nav class="nav-links">
+        <a href="/" class="nav-link active">Home</a>
+        <a href="/menu" class="nav-link">Menu</a>
+        <a href="/cart" class="nav-link cart">
+            Cart
+            <!-- <span class="cart-count" id="cartCount">0</span> -->
+        </a>
+        <!-- <a href="orders.html" class="nav-link">My Orders</a> -->
+        <a href="/login" class="nav-link">Login</a>
+        <a href="/signup" class="nav-link">Sign Up</a>
+    </nav>
+</header>
